@@ -116,7 +116,19 @@ def extract_album_art(file_path, song_id):
         logging.error(f"Album art extraction error for {file_path}: {e}")
 
     if album_art_data:
-        album_art_path = os.path.join(ALBUM_ART_FOLDER, f"album_{song_id}.jpg")
+        try:
+            img = Image.open(BytesIO(album_art_data))
+            if img.mode != "RGB":
+                img = img.convert("RGB")
+            img.thumbnail((250, 250), Image.LANCZOS)
+            img.save(out_path, "JPEG")
+            print(f"Saved album art thumbnail to {out_path}")
+        except Exception as e:
+                print(f"Error processing image: {e}")
+        else:
+            print("No album art found.")
+
+            album_art_path = os.path.join(ALBUM_ART_FOLDER, f"album_{song_id}.jpg")
         try:
             # Open the image from the bytes data
             img = Image.open(BytesIO(album_art_data))
