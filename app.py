@@ -93,57 +93,38 @@ def compute_embedding(file_path):
         logging.error(f"Error processing {file_path}: {e}")
         return np.zeros(3)
 
-def extract_album_art(file_path, song_id):
-    """
-    Extract album art from the audio file using mutagen.
-    If found, use Pillow to resize it to a thumbnail (250x250) and save it.
-    Returns the URL to the saved thumbnail.
-    """
+def extract_and_save_album_art(file_path, song_id):
+    """Extract album art from an audio file and save thumbnail."""
     album_art_data = None
     try:
         from mutagen import File as MutagenFile
         audio = MutagenFile(file_path)
-        if audio is not None:
-            # For MP3: look for APIC frames.
-            if audio.tags is not None:
-                apic_keys = [key for key in audio.tags.keys() if key.startswith('APIC')]
-                if apic_keys:
-                    album_art_data = audio.tags[apic_keys[0]].data
-            # For FLAC: check for embedded pictures.
-            if hasattr(audio, 'pictures') and audio.pictures:
+        if audio is not None and audio.tags is not None:
+            # For MP3 files: check for APIC frames
+            apic_keys = [k for k in audio.tags.keys() if k.startswith('APIC')]
+            if apic_keys:
+                album_art_data = audio.tags[apic_keys[0]].data
+            if not album_art_data and hasattr(audio, 'pictures') and audio.pictures:
+                # For FLAC files: check for pictures
                 album_art_data = audio.pictures[0].data
     except Exception as e:
-        logging.error(f"Album art extraction error for {file_path}: {e}")
+        print(f"Error extracting album art: {e}")
 
     if album_art_data:
+        album_art_path = os.path.join(ALBUM_ART_FOLDER, f"album_{song_id}.jpg")
         try:
             img = Image.open(BytesIO(album_art_data))
             if img.mode != "RGB":
                 img = img.convert("RGB")
             img.thumbnail((250, 250), Image.LANCZOS)
-            img.save(out_path, "JPEG")
-            print(f"Saved album art thumbnail to {out_path}")
-        except Exception as e:
-                print(f"Error processing image: {e}")
-        else:
-            print("No album art found.")
-
-            album_art_path = os.path.join(ALBUM_ART_FOLDER, f"album_{song_id}.jpg")
-        try:
-            # Open the image from the bytes data
-            img = Image.open(BytesIO(album_art_data))
-            # Convert to RGB (in case it's a PNG with alpha or similar)
-            if img.mode != "RGB":
-                img = img.convert("RGB")
-            # Resize image (maintaining aspect ratio) to fit within 250x250 pixels
-            img.thumbnail((250, 250), Image.ANTIALIAS)
-            # Save the thumbnail
             img.save(album_art_path, "JPEG")
-            logging.info(f"Saved resized album art for {file_path} as {album_art_path}")
-            return f"/static/album_art/album_{song_id}.jpg"
+            print(f"Album art saved to {album_art_path}")
+            return f"/static/album_art/album_{song_id}.jpg"  # Ensure this returns the correct URL
         except Exception as e:
-            logging.error(f"Error processing album art for {file_path}: {e}")
-    return DEFAULT_ALBUM_ART
+            print(f"Error processing image: {e}")
+    else:
+        print("No album art found.")
+        return DEFAULT_ALBUM_ART  # If no album art, return the default image URL
 
 def load_songs_from_folder(directory):
     """
@@ -177,7 +158,7 @@ def load_songs_from_folder(directory):
                     title = mb_title
                 if mb_artist:
                     artist = mb_artist
-            album_art_url = extract_album_art(file_path, id_counter)
+            album_art_url = extract_and_save_album_art(file_path, id_counter)
             songs_list.append({
                 'id': id_counter,
                 'title': title,
@@ -224,7 +205,7 @@ def load_all_songs_from_folder(root):
                         title = mb_title
                     if mb_artist:
                         artist = mb_artist
-                album_art_url = extract_album_art(file_path, id_counter)
+                album_art_url = extract_and_save_album_art(file_path, id_counter)
                 # Set album name if file is in a subdirectory (other than root)
                 rel_dir = os.path.relpath(dirpath, root)
                 album = rel_dir if rel_dir != '.' else None
