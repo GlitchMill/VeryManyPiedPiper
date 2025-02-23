@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Sexy Music Player & Recommender</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #121212; color: #f0f0f0; margin-bottom: 100px; }
+    .card { cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; background-color: #1e1e1e; border: none; }
+    .card:hover { transform: scale(1.03); box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+    .album-art { width: 100%; height: 250px; object-fit: cover; }
+    .card-title, .card-text { color: #f0f0f0; }
+    .section-title { border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; margin-bottom: 20px; }
+    
+    /* Custom Player Styling */
+    .custom-player {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #1e1e1e;
+      padding: 10px 20px;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.8);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .track-info {
+      flex: 1 1 30%;
+      margin-right: 20px;
+    }
+    .track-info h5, .track-info p {
+      margin: 0;
+    }
+    .controls {
+      flex: 1 1 30%;
+      text-align: center;
+    }
+    .controls button {
+      margin: 0 10px;
+    }
+    .progress-container {
+      flex: 1 1 30%;
+      display: flex;
+      align-items: center;
+    }
+    .progress-container span {
+      width: 50px;
+      text-align: center;
+    }
+    .progress-container input[type="range"] {
+      width: 100%;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <h1 class="text-center mb-4">Sexy Music Player & Recommender</h1>
+    <div class="text-center mb-4">
+      <a href="/graph" class="btn btn-secondary">View 3D Vector Graph</a>
+    </div>
+
+    <!-- Albums Section -->
+    <div class="section-title">
+      <h3>Albums</h3>
+    </div>
+    <div class="row" id="albumsContainer">
+      {% for album in albums %}
+      <div class="col-md-4 mb-4">
+        <div class="card" onclick="location.href='/album/{{ album.name }}'">
+          <img src="{{ album.album_art }}" class="card-img-top album-art" alt="Album Art">
+          <div class="card-body">
+            <h5 class="card-title">{{ album.name }}</h5>
+            <p class="card-text">{{ album.songs|length }} Songs</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Individual Songs Section -->
+    <div class="section-title mt-5">
+      <h3>Other Songs</h3>
+    </div>
+    <div class="row" id="songsContainer">
+      {% for song in songs %}
+      <div class="col-md-4 mb-4">
+        <div class="card" onclick="playSong('{{ song.file }}', {{ song.id }}, '{{ song.title }}', '{{ song.artist }}')">
+          <img src="{{ song.album_art }}" class="card-img-top album-art" alt="Album Art">
+          <div class="card-body">
+            <h5 class="card-title">{{ song.title }}</h5>
+            <p class="card-text">{{ song.artist }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Custom Audio Player (Fixed at Bottom) -->
+  <div id="customPlayer" class="custom-player">
+    <div class="track-info">
+      <h5 id="trackTitle">No song playing</h5>
+      <p id="trackArtist"></p>
+    </div>
+    <div class="controls">
+      <button id="prevBtn" class="btn btn-secondary">Prev</button>
+      <button id="playPauseBtn" class="btn btn-primary">Play</button>
+      <button id="nextBtn" class="btn btn-secondary">Next</button>
+    </div>
+    <div class="progress-container">
+      <span id="currentTime">0:00</span>
+      <input type="range" id="progressBar" value="0" min="0" max="100">
+      <span id="duration">0:00</span>
+    </div>
+  </div>
+
+  <!-- Hidden HTML5 Audio Element -->
+  <audio id="hiddenAudio"></audio>
+
+  <!-- Include Socket.IO client -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.min.js"></script>
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Socket.IO for real-time updates (existing functionality)
+    var socket = io();
+    socket.on('connect', function() {
+      console.log('Connected to server via Socket.IO');
+    });
+    socket.on('update_data', function(data) {
+      console.log("Update received:", data);
+      fetch('/data')
+        .then(response => response.json())
+        .then(function(updated) {
+          renderAlbums(updated.albums);
+          renderSongs(updated.songs);
+        });
+    });
+
+    // Render Albums
+    function renderAlbums(albums) {
+      let container = document.getElementById('albumsContainer');
+      let html = "";
+      albums.forEach(function(album) {
+        html += `
+          <div class="col-md-4 mb-4">
+            <div class="card" onclick="location.href='/album/${album.name}'">
+              <img src="${album.album_art}" class="card-img-top album-art" alt="Album Art">
+              <div class="card-body">
+                <h5 class="card-title">${album.name}</h5>
+                <p class="card-text">${album.songs.length} Songs</p>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+    
+    // Render Individual Songs
+    function renderSongs(songs) {
+      let container = document.getElementById('songsContainer');
+      let html = "";
+      songs.forEach(function(song) {
+        html += `
+          <div class="col-md-4 mb-4">
+            <div class="card" onclick="playSong('${song.file}', ${song.id}, '${song.title}', '${song.artist}')">
+              <img src="${song.album_art}" class="card-img-top album-art" alt="Album Art">
+              <div class="card-body">
+                <h5 class="card-title">${song.title}</h5>
+                <p class="card-text">${song.artist}</p>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    // Audio element
+    var audioPlayer = document.getElementById('hiddenAudio');
+
+    // Custom player controls
+    var playPauseBtn = document.getElementById('playPauseBtn');
+    var progressBar = document.getElementById('progressBar');
+    var currentTimeDisplay = document.getElementById('currentTime');
+    var durationDisplay = document.getElementById('duration');
+    var trackTitleDisplay = document.getElementById('trackTitle');
+    var trackArtistDisplay = document.getElementById('trackArtist');
+
+    // Play/Pause toggle
+    playPauseBtn.addEventListener('click', function() {
+      if (audioPlayer.paused) {
+        audioPlayer.play();
+        playPauseBtn.textContent = 'Pause';
+      } else {
+        audioPlayer.pause();
+        playPauseBtn.textContent = 'Play';
+      }
+    });
+
+    // Update progress bar as the song plays
+    audioPlayer.addEventListener('timeupdate', function() {
+      if (audioPlayer.duration) {
+        var progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+        progressBar.value = progressPercent;
+        currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime);
+        durationDisplay.textContent = formatTime(audioPlayer.duration);
+      }
+    });
+
+    // Seek when the progress bar is changed
+    progressBar.addEventListener('input', function() {
+      if (audioPlayer.duration) {
+        audioPlayer.currentTime = (progressBar.value / 100) * audioPlayer.duration;
+      }
+    });
+
+    // Helper to format time in minutes and seconds
+    function formatTime(seconds) {
+      var minutes = Math.floor(seconds / 60);
+      var secs = Math.floor(seconds % 60);
+      return minutes + ":" + (secs < 10 ? "0" + secs : secs);
+    }
+
+    // Example playSong function which also updates track info
+    function playSong(file, songId, title, artist) {
+      audioPlayer.src = '/songs/' + file;
+      audioPlayer.play();
+      playPauseBtn.textContent = 'Pause';
+      trackTitleDisplay.textContent = title;
+      trackArtistDisplay.textContent = artist;
+    }
+    window.playSong = playSong; // Make accessible to card onclick events
+
+    // Optionally, add event listeners for Prev/Next buttons as needed.
+    document.getElementById('prevBtn').addEventListener('click', function() {
+      // Implement previous track logic
+      console.log('Previous track');
+    });
+    document.getElementById('nextBtn').addEventListener('click', function() {
+      // Implement next track logic
+      console.log('Next track');
+    });
+  </script>
+</body>
+</html>

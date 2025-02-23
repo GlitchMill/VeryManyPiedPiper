@@ -1,0 +1,150 @@
+2025-02-23 14:49:49,510 [INFO] Created album art folder: static/album_art
+2025-02-23 14:49:49,511 [INFO] MusicBrainz user agent set.
+2025-02-23 14:49:49,511 [INFO] Performing initial scan of songs folder.
+2025-02-23 14:49:49,511 [INFO] Recursively scanning for songs in: songs
+2025-02-23 14:50:18,926 [ERROR] Error processing album art for songs/128-Jungle Path - Chitrakut 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:20,501 [ERROR] Error processing album art for songs/128-32 Dand - Draaka 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:24,271 [INFO] Querying MusicBrainz for: Bin Tere
+2025-02-23 14:50:25,074 [INFO] in <ws2:recording>, uncaught <first-release-date>
+2025-02-23 14:50:25,075 [INFO] in <ws2:release-group>, uncaught attribute type-id
+2025-02-23 14:50:25,075 [INFO] in <ws2:release-group>, uncaught attribute type-id
+2025-02-23 14:50:25,076 [INFO] MusicBrainz found: Title: Bin Tere, Artist: Shafqat Amanat Ali
+2025-02-23 14:50:25,086 [ERROR] Error processing album art for songs/Bin Tere.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:26,691 [ERROR] Error processing album art for songs/128-2step (feat. Armaan Malik) - Ed Sheeran 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:29,381 [ERROR] Error processing album art for songs/128-Kesariya - Brahmastra 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:31,371 [ERROR] Error processing album art for songs/128-Atak Gaya Abhijeet Version - Badhaai Do 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:31,371 [INFO] Recursively found 6 songs in songs
+2025-02-23 14:50:31,371 [INFO] Scanning directory for songs: songs
+2025-02-23 14:50:31,371 [INFO] Processing file: songs/128-Jungle Path - Chitrakut 128 Kbps.mp3
+2025-02-23 14:50:32,456 [ERROR] Error processing album art for songs/128-Jungle Path - Chitrakut 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:32,456 [INFO] Processing file: songs/128-32 Dand - Draaka 128 Kbps.mp3
+2025-02-23 14:50:34,009 [ERROR] Error processing album art for songs/128-32 Dand - Draaka 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:34,009 [INFO] Processing file: songs/Bin Tere.mp3
+2025-02-23 14:50:37,710 [INFO] Using cached MusicBrainz result for: Bin Tere
+2025-02-23 14:50:37,713 [ERROR] Error processing album art for songs/Bin Tere.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:37,713 [INFO] Processing file: songs/128-2step (feat. Armaan Malik) - Ed Sheeran 128 Kbps.mp3
+2025-02-23 14:50:39,228 [ERROR] Error processing album art for songs/128-2step (feat. Armaan Malik) - Ed Sheeran 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:39,229 [INFO] Processing file: songs/128-Kesariya - Brahmastra 128 Kbps.mp3
+2025-02-23 14:50:41,886 [ERROR] Error processing album art for songs/128-Kesariya - Brahmastra 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:41,886 [INFO] Processing file: songs/128-Atak Gaya Abhijeet Version - Badhaai Do 128 Kbps.mp3
+2025-02-23 14:50:43,848 [ERROR] Error processing album art for songs/128-Atak Gaya Abhijeet Version - Badhaai Do 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:43,848 [INFO] Found 6 songs in songs
+2025-02-23 14:50:43,849 [INFO] Scanning for album folders in: songs
+2025-02-23 14:50:43,849 [INFO] Initial scan complete. Total songs: 6. Albums found: 0.
+2025-02-23 14:50:43,849 [INFO] Rescanning songs folder for updates...
+2025-02-23 14:50:43,849 [INFO] Background update thread started.
+2025-02-23 14:50:43,849 [INFO] Recursively scanning for songs in: songs
+2025-02-23 14:50:43,854 [INFO] Starting Flask app.
+2025-02-23 14:50:43,867 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-23 14:50:43,867 [INFO] [33mPress CTRL+C to quit[0m
+2025-02-23 14:50:43,867 [INFO]  * Restarting with stat
+2025-02-23 14:50:45,098 [ERROR] Error processing album art for songs/128-Jungle Path - Chitrakut 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:45,243 [INFO] MusicBrainz user agent set.
+2025-02-23 14:50:45,244 [INFO] Performing initial scan of songs folder.
+2025-02-23 14:50:45,244 [INFO] Recursively scanning for songs in: songs
+2025-02-23 14:50:46,791 [ERROR] Error processing album art for songs/128-32 Dand - Draaka 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:49,044 [ERROR] Error processing album art for songs/128-Jungle Path - Chitrakut 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:51,161 [INFO] Using cached MusicBrainz result for: Bin Tere
+2025-02-23 14:50:51,164 [ERROR] Error processing album art for songs/Bin Tere.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:51,184 [ERROR] Error processing album art for songs/128-32 Dand - Draaka 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:52,856 [ERROR] Error processing album art for songs/128-2step (feat. Armaan Malik) - Ed Sheeran 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:55,442 [INFO] Querying MusicBrainz for: Bin Tere
+2025-02-23 14:50:56,228 [ERROR] Error processing album art for songs/128-Kesariya - Brahmastra 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:56,359 [INFO] in <ws2:recording>, uncaught <first-release-date>
+2025-02-23 14:50:56,360 [INFO] in <ws2:release-group>, uncaught attribute type-id
+2025-02-23 14:50:56,360 [INFO] MusicBrainz found: Title: Bin Tere, Artist: Aditya Rikhari
+2025-02-23 14:50:56,366 [ERROR] Error processing album art for songs/Bin Tere.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:58,156 [ERROR] Error processing album art for songs/128-2step (feat. Armaan Malik) - Ed Sheeran 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:58,603 [ERROR] Error processing album art for songs/128-Atak Gaya Abhijeet Version - Badhaai Do 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:58,603 [INFO] Recursively found 6 songs in songs
+2025-02-23 14:50:58,603 [INFO] Scanning directory for songs: songs
+2025-02-23 14:50:58,603 [INFO] Processing file: songs/128-Jungle Path - Chitrakut 128 Kbps.mp3
+2025-02-23 14:50:59,802 [ERROR] Error processing album art for songs/128-Jungle Path - Chitrakut 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:50:59,802 [INFO] Processing file: songs/128-32 Dand - Draaka 128 Kbps.mp3
+2025-02-23 14:51:01,457 [ERROR] Error processing album art for songs/128-Kesariya - Brahmastra 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:51:01,918 [ERROR] Error processing album art for songs/128-32 Dand - Draaka 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:51:01,918 [INFO] Processing file: songs/Bin Tere.mp3
+2025-02-23 14:51:04,395 [ERROR] Error processing album art for songs/128-Atak Gaya Abhijeet Version - Badhaai Do 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:51:04,395 [INFO] Recursively found 6 songs in songs
+2025-02-23 14:51:04,395 [INFO] Scanning directory for songs: songs
+2025-02-23 14:51:04,396 [INFO] Processing file: songs/128-Jungle Path - Chitrakut 128 Kbps.mp3
+2025-02-23 14:51:07,529 [ERROR] Error processing album art for songs/128-Jungle Path - Chitrakut 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:51:07,530 [INFO] Processing file: songs/128-32 Dand - Draaka 128 Kbps.mp3
+2025-02-23 14:51:10,896 [INFO] Using cached MusicBrainz result for: Bin Tere
+2025-02-23 14:51:10,905 [ERROR] Error processing album art for songs/Bin Tere.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:51:10,906 [INFO] Processing file: songs/128-2step (feat. Armaan Malik) - Ed Sheeran 128 Kbps.mp3
+2025-02-23 14:51:12,725 [ERROR] Error processing album art for songs/128-32 Dand - Draaka 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:51:12,729 [INFO] Processing file: songs/Bin Tere.mp3
+2025-02-23 14:51:15,511 [ERROR] Error processing album art for songs/128-2step (feat. Armaan Malik) - Ed Sheeran 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:51:15,511 [INFO] Processing file: songs/128-Kesariya - Brahmastra 128 Kbps.mp3
+2025-02-23 14:51:23,906 [ERROR] Error processing album art for songs/128-Kesariya - Brahmastra 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:51:23,907 [INFO] Processing file: songs/128-Atak Gaya Abhijeet Version - Badhaai Do 128 Kbps.mp3
+2025-02-23 14:51:24,321 [INFO] Using cached MusicBrainz result for: Bin Tere
+2025-02-23 14:51:24,330 [ERROR] Error processing album art for songs/Bin Tere.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:51:24,331 [INFO] Processing file: songs/128-2step (feat. Armaan Malik) - Ed Sheeran 128 Kbps.mp3
+2025-02-23 14:51:28,800 [ERROR] Error processing album art for songs/128-2step (feat. Armaan Malik) - Ed Sheeran 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:51:28,801 [INFO] Processing file: songs/128-Kesariya - Brahmastra 128 Kbps.mp3
+2025-02-23 14:51:29,894 [ERROR] Error processing album art for songs/128-Atak Gaya Abhijeet Version - Badhaai Do 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:51:29,895 [INFO] Found 6 songs in songs
+2025-02-23 14:51:29,895 [INFO] Scanning for album folders in: songs
+2025-02-23 14:51:29,895 [INFO] Updated song list. Total songs: 6. Albums found: 0.
+2025-02-23 14:51:36,888 [ERROR] Error processing album art for songs/128-Kesariya - Brahmastra 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:51:36,889 [INFO] Processing file: songs/128-Atak Gaya Abhijeet Version - Badhaai Do 128 Kbps.mp3
+2025-02-23 14:51:43,251 [ERROR] Error processing album art for songs/128-Atak Gaya Abhijeet Version - Badhaai Do 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:51:43,252 [INFO] Found 6 songs in songs
+2025-02-23 14:51:43,252 [INFO] Scanning for album folders in: songs
+2025-02-23 14:51:43,253 [INFO] Initial scan complete. Total songs: 6. Albums found: 0.
+2025-02-23 14:51:43,254 [INFO] Rescanning songs folder for updates...
+2025-02-23 14:51:43,255 [INFO] Recursively scanning for songs in: songs
+2025-02-23 14:51:43,256 [INFO] Background update thread started.
+2025-02-23 14:51:43,300 [INFO] Starting Flask app.
+2025-02-23 14:51:43,321 [WARNING]  * Debugger is active!
+2025-02-23 14:51:43,327 [INFO]  * Debugger PIN: 802-146-902
+2025-02-23 14:51:48,023 [ERROR] Error processing album art for songs/128-Jungle Path - Chitrakut 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:51:49,619 [INFO] 127.0.0.1 - - [23/Feb/2025 14:51:49] "GET / HTTP/1.1" 200 -
+2025-02-23 14:51:50,441 [INFO] 127.0.0.1 - - [23/Feb/2025 14:51:50] "[33mGET /static/album_art/default.jpg HTTP/1.1[0m" 404 -
+2025-02-23 14:51:51,437 [INFO] 127.0.0.1 - - [23/Feb/2025 14:51:51] "GET /socket.io/?EIO=4&transport=polling&t=PKo7Ena HTTP/1.1" 200 -
+2025-02-23 14:51:51,988 [INFO] 127.0.0.1 - - [23/Feb/2025 14:51:51] "POST /socket.io/?EIO=4&transport=polling&t=PKo7Ex-&sid=sAHn7aclq_vwdPb5AAAA HTTP/1.1" 200 -
+2025-02-23 14:51:51,996 [INFO] 127.0.0.1 - - [23/Feb/2025 14:51:51] "GET /socket.io/?EIO=4&transport=polling&t=PKo7EyW&sid=sAHn7aclq_vwdPb5AAAA HTTP/1.1" 200 -
+2025-02-23 14:51:52,103 [INFO] 127.0.0.1 - - [23/Feb/2025 14:51:52] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-23 14:51:52,152 [INFO] 127.0.0.1 - - [23/Feb/2025 14:51:52] "GET /socket.io/?EIO=4&transport=polling&t=PKo7E_6&sid=sAHn7aclq_vwdPb5AAAA HTTP/1.1" 200 -
+2025-02-23 14:51:54,661 [ERROR] Error processing album art for songs/128-32 Dand - Draaka 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:52:08,209 [INFO] Using cached MusicBrainz result for: Bin Tere
+2025-02-23 14:52:08,226 [ERROR] Error processing album art for songs/Bin Tere.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:52:12,114 [INFO] Rendering 3D vector graph.
+2025-02-23 14:52:12,263 [INFO] 127.0.0.1 - - [23/Feb/2025 14:52:12] "GET /graph HTTP/1.1" 200 -
+2025-02-23 14:52:15,821 [ERROR] Error processing album art for songs/128-2step (feat. Armaan Malik) - Ed Sheeran 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:52:24,732 [ERROR] Error processing album art for songs/128-Kesariya - Brahmastra 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:52:30,197 [ERROR] Error processing album art for songs/128-Atak Gaya Abhijeet Version - Badhaai Do 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:52:30,197 [INFO] Recursively found 6 songs in songs
+2025-02-23 14:52:30,198 [INFO] Scanning directory for songs: songs
+2025-02-23 14:52:30,198 [INFO] Processing file: songs/128-Jungle Path - Chitrakut 128 Kbps.mp3
+2025-02-23 14:52:33,381 [ERROR] Error processing album art for songs/128-Jungle Path - Chitrakut 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:52:33,382 [INFO] Processing file: songs/128-32 Dand - Draaka 128 Kbps.mp3
+2025-02-23 14:52:38,101 [ERROR] Error processing album art for songs/128-32 Dand - Draaka 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:52:38,102 [INFO] Processing file: songs/Bin Tere.mp3
+2025-02-23 14:52:48,530 [INFO] Using cached MusicBrainz result for: Bin Tere
+2025-02-23 14:52:48,540 [ERROR] Error processing album art for songs/Bin Tere.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:52:48,541 [INFO] Processing file: songs/128-2step (feat. Armaan Malik) - Ed Sheeran 128 Kbps.mp3
+2025-02-23 14:52:52,911 [ERROR] Error processing album art for songs/128-2step (feat. Armaan Malik) - Ed Sheeran 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:52:52,911 [INFO] Processing file: songs/128-Kesariya - Brahmastra 128 Kbps.mp3
+2025-02-23 14:53:00,896 [ERROR] Error processing album art for songs/128-Kesariya - Brahmastra 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:53:00,896 [INFO] Processing file: songs/128-Atak Gaya Abhijeet Version - Badhaai Do 128 Kbps.mp3
+2025-02-23 14:53:06,508 [ERROR] Error processing album art for songs/128-Atak Gaya Abhijeet Version - Badhaai Do 128 Kbps.mp3: module 'PIL.Image' has no attribute 'ANTIALIAS'
+2025-02-23 14:53:06,509 [INFO] Found 6 songs in songs
+2025-02-23 14:53:06,509 [INFO] Scanning for album folders in: songs
+2025-02-23 14:53:06,510 [INFO] Updated song list. Total songs: 6. Albums found: 0.
+2025-02-23 14:54:15,682 [INFO] Rendering 3D vector graph.
+2025-02-23 14:54:15,719 [INFO] 127.0.0.1 - - [23/Feb/2025 14:54:15] "GET /graph HTTP/1.1" 200 -
+2025-02-23 14:54:16,520 [INFO] 127.0.0.1 - - [23/Feb/2025 14:54:16] "GET /socket.io/?EIO=4&transport=websocket&sid=sAHn7aclq_vwdPb5AAAA HTTP/1.1" 200 -
+2025-02-23 14:54:25,700 [INFO] 127.0.0.1 - - [23/Feb/2025 14:54:25] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-23 14:54:47,081 [INFO] 127.0.0.1 - - [23/Feb/2025 14:54:47] "GET / HTTP/1.1" 200 -
+2025-02-23 14:54:47,127 [INFO] 127.0.0.1 - - [23/Feb/2025 14:54:47] "[33mGET /static/album_art/default.jpg HTTP/1.1[0m" 404 -
+2025-02-23 14:54:47,169 [INFO] 127.0.0.1 - - [23/Feb/2025 14:54:47] "[33mGET /static/album_art/default.jpg HTTP/1.1[0m" 404 -
+2025-02-23 14:54:47,496 [INFO] 127.0.0.1 - - [23/Feb/2025 14:54:47] "GET /socket.io/?EIO=4&transport=polling&t=PKo7vq0 HTTP/1.1" 200 -
+2025-02-23 14:54:47,523 [INFO] 127.0.0.1 - - [23/Feb/2025 14:54:47] "POST /socket.io/?EIO=4&transport=polling&t=PKo7vqP&sid=9RnNp6eHzKFh2_HMAAAC HTTP/1.1" 200 -
+2025-02-23 14:54:47,539 [INFO] 127.0.0.1 - - [23/Feb/2025 14:54:47] "GET /socket.io/?EIO=4&transport=polling&t=PKo7vqW&sid=9RnNp6eHzKFh2_HMAAAC HTTP/1.1" 200 -
+2025-02-23 14:54:50,283 [INFO] 127.0.0.1 - - [23/Feb/2025 14:54:50] "[35m[1mGET /songs/128-Jungle%20Path%20-%20Chitrakut%20128%20Kbps.mp3 HTTP/1.1[0m" 206 -
+2025-02-23 14:54:50,666 [INFO] 127.0.0.1 - - [23/Feb/2025 14:54:50] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-23 14:55:08,811 [INFO] 127.0.0.1 - - [23/Feb/2025 14:55:08] "[35m[1mGET /songs/128-Kesariya%20-%20Brahmastra%20128%20Kbps.mp3 HTTP/1.1[0m" 206 -

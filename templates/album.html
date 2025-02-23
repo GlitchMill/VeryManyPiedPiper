@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Album: {{ album_name }}</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #121212; color: #f0f0f0; margin-bottom: 100px; }
+    .card { cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; background-color: #1e1e1e; border: none; }
+    .card:hover { transform: scale(1.03); box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+    .album-art { width: 100%; height: 250px; object-fit: cover; }
+    .card-title, .card-text { color: #f0f0f0; }
+    .section-title { border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; margin-bottom: 20px; }
+    
+    /* Custom Player Styling */
+    .custom-player {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #1e1e1e;
+      padding: 10px 20px;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.8);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .track-info {
+      flex: 1 1 30%;
+      margin-right: 20px;
+    }
+    .track-info h5, .track-info p {
+      margin: 0;
+    }
+    .controls {
+      flex: 1 1 30%;
+      text-align: center;
+    }
+    .controls button {
+      margin: 0 10px;
+    }
+    .progress-container {
+      flex: 1 1 30%;
+      display: flex;
+      align-items: center;
+    }
+    .progress-container span {
+      width: 50px;
+      text-align: center;
+    }
+    .progress-container input[type="range"] {
+      width: 100%;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <h1 class="mb-4">Album: {{ album_name }}</h1>
+    <div class="mb-4">
+      <a href="/" class="btn btn-primary">Back to Home</a>
+    </div>
+    <div class="row">
+      {% for song in songs %}
+      <div class="col-md-4 mb-4">
+        <div class="card" onclick="playSong('{{ song.file }}', {{ song.id }}, '{{ song.title }}', '{{ song.artist }}')">
+          <img src="{{ song.album_art }}" class="card-img-top album-art" alt="Album Art">
+          <div class="card-body">
+            <h5 class="card-title">{{ song.title }}</h5>
+            <p class="card-text">{{ song.artist }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Custom Audio Player (Fixed at Bottom) -->
+  <div id="customPlayer" class="custom-player">
+    <div class="track-info">
+      <h5 id="trackTitle">No song playing</h5>
+      <p id="trackArtist"></p>
+    </div>
+    <div class="controls">
+      <button id="prevBtn" class="btn btn-secondary">Prev</button>
+      <button id="playPauseBtn" class="btn btn-primary">Play</button>
+      <button id="nextBtn" class="btn btn-secondary">Next</button>
+    </div>
+    <div class="progress-container">
+      <span id="currentTime">0:00</span>
+      <input type="range" id="progressBar" value="0" min="0" max="100">
+      <span id="duration">0:00</span>
+    </div>
+  </div>
+
+  <!-- Hidden HTML5 Audio Element -->
+  <audio id="hiddenAudio"></audio>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Get references to player elements
+    var audioPlayer = document.getElementById('hiddenAudio');
+    var playPauseBtn = document.getElementById('playPauseBtn');
+    var progressBar = document.getElementById('progressBar');
+    var currentTimeDisplay = document.getElementById('currentTime');
+    var durationDisplay = document.getElementById('duration');
+    var trackTitleDisplay = document.getElementById('trackTitle');
+    var trackArtistDisplay = document.getElementById('trackArtist');
+
+    // Optionally restore previous track state if stored in localStorage
+    if (localStorage.getItem('currentTrack')) {
+      var track = JSON.parse(localStorage.getItem('currentTrack'));
+      audioPlayer.src = track.src;
+      trackTitleDisplay.textContent = track.title;
+      trackArtistDisplay.textContent = track.artist;
+    }
+
+    // Play/Pause toggle functionality
+    playPauseBtn.addEventListener('click', function() {
+      if (audioPlayer.paused) {
+        audioPlayer.play();
+        playPauseBtn.textContent = 'Pause';
+      } else {
+        audioPlayer.pause();
+        playPauseBtn.textContent = 'Play';
+      }
+    });
+
+    // Update the progress bar and time display as the song plays
+    audioPlayer.addEventListener('timeupdate', function() {
+      if (audioPlayer.duration) {
+        var progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+        progressBar.value = progressPercent;
+        currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime);
+        durationDisplay.textContent = formatTime(audioPlayer.duration);
+      }
+    });
+
+    // Seek functionality using the progress bar
+    progressBar.addEventListener('input', function() {
+      if (audioPlayer.duration) {
+        audioPlayer.currentTime = (progressBar.value / 100) * audioPlayer.duration;
+      }
+    });
+
+    // Helper function to format time (minutes:seconds)
+    function formatTime(seconds) {
+      var minutes = Math.floor(seconds / 60);
+      var secs = Math.floor(seconds % 60);
+      return minutes + ":" + (secs < 10 ? "0" + secs : secs);
+    }
+
+    // playSong function: updates the audio source, starts playback, updates player info,
+    // and saves the current track state to localStorage.
+    function playSong(file, songId, title, artist) {
+      audioPlayer.src = '/songs/' + file;
+      audioPlayer.play();
+      playPauseBtn.textContent = 'Pause';
+      trackTitleDisplay.textContent = title;
+      trackArtistDisplay.textContent = artist;
+      
+      // Store current track info for persistence between page navigations.
+      localStorage.setItem('currentTrack', JSON.stringify({
+        src: audioPlayer.src,
+        title: title,
+        artist: artist
+      }));
+    }
+    window.playSong = playSong; // Ensure playSong is globally accessible
+
+    // Optionally, implement previous/next track functionality.
+    document.getElementById('prevBtn').addEventListener('click', function() {
+      console.log('Previous track functionality goes here');
+    });
+    document.getElementById('nextBtn').addEventListener('click', function() {
+      console.log('Next track functionality goes here');
+    });
+  </script>
+</body>
+</html>
